@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { Paper } from '@mui/material';
-import { DataGrid} from '@mui/x-data-grid';
-import axios from 'axios';
-import { createStyles, makeStyles } from "@material-ui/core/styles";
+    import * as React from 'react';
+    import { Paper } from '@mui/material';
+    import { DataGrid } from '@mui/x-data-grid';
+    import axios from 'axios';
+    import { createStyles, makeStyles } from "@material-ui/core/styles";
+    import { useLocation, useNavigate } from 'react-router';
 
 
 const paperStyle = {
@@ -88,6 +89,8 @@ const columns = [
 export default function EmployeeData() {
     const classes = useStyles();
     const [apiData, setApiData] = React.useState([])
+    const location = useLocation();
+    const navigate = useNavigate();
 
     React.useEffect(() => { 
         async function callApi() { 
@@ -99,9 +102,9 @@ export default function EmployeeData() {
     }, [])
     
     React.useEffect(() => {
-        console.log(apiData, "apo data set")
+        console.log(apiData, "api data set")
     }, [apiData])
-    
+   
     return (
     <React.Fragment>
         <Paper elevation={8} style={paperStyle}>
@@ -109,15 +112,17 @@ export default function EmployeeData() {
                 <DataGrid
                     rows={apiData}
                     columns={columns}
-                    pageSize={8}
+                    pageSize={9}
                     rowsPerPageOptions={[5]}
                     className={classes.root}
                     checkboxSelection
                     disableSelectionOnClick
-                        onRowClick={(params) => {
-                            if (localStorage) {
-                                localStorage.setItem("selectedEmployee", JSON.stringify(params.row))
-                            }
+                    onRowClick={(params) => {
+                    if(localStorage){
+                        localStorage.setItem("selectedEmployee", JSON.stringify(params.row))
+                        }
+                        navigate("/empDetails") 
+
                         }}
                     />
                     
