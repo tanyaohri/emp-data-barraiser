@@ -2,7 +2,7 @@
     import { Paper } from '@mui/material';
     import { DataGrid } from '@mui/x-data-grid';
     import axios from 'axios';
-    import { createStyles, makeStyles } from "@material-ui/core/styles";
+    import { createStyles, makeStyles } from "@material-ui/core";
     import { useLocation, useNavigate } from 'react-router';
 
 
