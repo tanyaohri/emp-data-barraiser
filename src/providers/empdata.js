@@ -108,15 +108,18 @@ export default function EmployeeData() {
     return (
     <React.Fragment>
         <Paper elevation={8} style={paperStyle}>
-            <div style={{ height: 600, width: 'auto' }}>
-                <DataGrid
+                <div style={{
+                    height: 600, width: 'auto',
+                    
+                }}>
+                    <DataGrid
                     rows={apiData}
                     columns={columns}
                     pageSize={9}
                     rowsPerPageOptions={[5]}
                     className={classes.root}
                     checkboxSelection
-                    disableSelectionOnClick
+                    disableSelectionOnClick  
                     onRowClick={(params) => {
                     if(localStorage){
                         localStorage.setItem("selectedEmployee", JSON.stringify(params.row))
